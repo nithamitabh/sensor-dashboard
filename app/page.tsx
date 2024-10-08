@@ -179,6 +179,8 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">TV Control</div>
+              <div className="text-md font-semibold mt-2 text-neutral-200">Volume: {volume}</div>
+              <div className="text-md font-semibold mt-2 text-neutral-200">Channel: {channel}</div>
               <div className="flex space-x-2 mt-2">
                 <Button
                   size="sm"
@@ -188,6 +190,7 @@ export default function Home() {
                   {tvPower ? "Turn Off" : "Turn On"}
                 </Button>
               </div>
+
               <div className="flex space-x-2 mt-2">
                 <Button size="sm" variant="outline" onClick={decreaseVolume}>
                   Volume -
@@ -196,6 +199,7 @@ export default function Home() {
                   Volume +
                 </Button>
               </div>
+
               <div className="flex space-x-2 mt-2">
                 <Button size="sm" variant="outline" onClick={prevChannel}>
                   Previous Channel
@@ -204,6 +208,7 @@ export default function Home() {
                   Next Channel
                 </Button>
               </div>
+
               <div className="flex space-x-2 mt-2">
                 <Button
                   size="sm"
@@ -214,6 +219,7 @@ export default function Home() {
                 </Button>
               </div>
             </CardContent>
+
           </Card>
         </div>
 
