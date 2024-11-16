@@ -87,10 +87,26 @@ export default function Home() {
   const [volume, setVolume] = useState(10);
   const [channel, setChannel] = useState(1);
   const [wifiStatus, setWifiStatus] = useState(false);
+  const [temperature, setTemperature] = useState(generateData(6, 20, 30));
+  const [pirMovements, setPirMovements] = useState(generateData(7, 5, 20));
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (acStatus || curtainsStatus) {
+      // Example logic: If AC or curtains change, update temperature data
+      setTemperature(generateData(6, 20, 30)); // Simulating temp change
+    }
+  }, [acStatus, curtainsStatus]);
+
+  // Function to update PIR sensor data when security status changes
+  useEffect(() => {
+    if (securityStatus) {
+      setPirMovements(generateData(7, 5, 20)); // Simulating sensor activity
+    }
+  }, [securityStatus]);
 
   const toggleAC = () => setAcStatus(!acStatus);
   const toggleCurtains = () => setCurtainsStatus(!curtainsStatus);
@@ -108,7 +124,7 @@ export default function Home() {
     datasets: [
       {
         label: "Temperature (°C)",
-        data: generateData(6, 20, 30),
+        // data: generateData(6, 20, 30),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
@@ -120,7 +136,7 @@ export default function Home() {
     datasets: [
       {
         label: "Movements Detected",
-        data: generateData(7, 5, 20),
+        // data: generateData(7, 5, 20),
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
@@ -179,8 +195,12 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">TV Control</div>
-              <div className="text-md font-semibold mt-2 text-neutral-200">Volume: {volume}</div>
-              <div className="text-md font-semibold mt-2 text-neutral-200">Channel: {channel}</div>
+              <div className="text-md font-semibold mt-2 text-neutral-200">
+                Volume: {volume}
+              </div>
+              <div className="text-md font-semibold mt-2 text-neutral-200">
+                Channel: {channel}
+              </div>
               <div className="flex space-x-2 mt-2">
                 <Button
                   size="sm"
@@ -219,7 +239,6 @@ export default function Home() {
                 </Button>
               </div>
             </CardContent>
-
           </Card>
         </div>
 
@@ -243,6 +262,7 @@ export default function Home() {
               <Bar options={barChartOptions} data={pirData} />
             </CardContent>
           </Card>
+          {/* Home automation controls */}
           <Card className="mt-6 bg-neutral-400/20 backdrop-blur-lg border-gray-600 shadow-lg">
             <CardHeader>
               <CardTitle className="text-white">

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Sidebar = () => {
   return (
-    <aside className="w-64 h-screen bg-gradient-to-br from-purple-800/90 to-slate-900/60 backdrop:blur-lg text-white p-4">
+    <aside className="w-64 min-h-screen bg-gradient-to-br from-purple-800/90 to-slate-900/60 backdrop:blur-lg text-white p-4">
       <div className="text-lg font-semibold mb-6">Dashboard</div>
       <nav className="space-y-4">
         <Link
